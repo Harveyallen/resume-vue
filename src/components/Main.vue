@@ -35,7 +35,7 @@ export default {
     if (user.id) {
       this.$store.dispatch('fetchResume').then(() => {
         //新用户注册未保存时先存在localstorage中
-        this.restoreResumeFromLocalStorage()
+//        this.restoreResumeFromLocalStorage()
       })
     } else {
       this.restoreResumeFromLocalStorage()

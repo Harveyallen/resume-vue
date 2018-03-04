@@ -3,36 +3,54 @@
     <section class="section-left">
       <header class="profile">
         <h2>{{resume.Profile.name}}</h2>
-        <h3>求职意向:{{resume.Profile.intention}}</h3>
-        <p>
+        <h3>应聘岗位:{{resume.Profile.intention}}</h3>
+      </header>
+
+      <div class="contacts">
+        <h3>Contact. 联系方式</h3>
+        <p class="mobilephone">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-tel"></use>
           </svg>
-        </p>
-        <p>
+          <i>手机号:</i>
           {{resume.Contacts.telephone}}
         </p>
-        <p>
+
+        <p class="mail">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-email"></use>
           </svg>
+          <i>邮 箱：</i>
+          <a href="mailto:zoulong2008@126.com" target="_blank">{{resume.Contacts.email}}</a>
         </p>
-        <p>{{resume.Contacts.email}}</p>
-        <ul class="personal">
+      </div>
+
+      <div class="info">
+        <h3>Basic info. 基本信息</h3>
+        <ul>
           <li>
-            <p>住址</p>
-            <p>{{resume.Profile.city}}</p>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-id"></use>
+            </svg>
+            个人信息：{{resume.Profile.name}}/{{resume.Profile.sex}}/{{resume.Profile.age}}岁
           </li>
           <li>
-            <p>性别</p>
-            <p>{{resume.Profile.sex}}</p>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-edu"></use>
+            </svg>
+            学位等级：{{resume.Profile.degree}}
           </li>
           <li>
-            <p>年龄</p>
-            <p>{{resume.Profile.age}}</p>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-edu"></use>
+            </svg>
+            英语水平：{{resume.Profile.english}}
           </li>
         </ul>
-      </header>
+      </div>
+
+
+
       <div class="edu">
         <h3>教育背景</h3>
         <p>{{resume.Education.school}}</p>
@@ -171,6 +189,17 @@ export default {
     }
   }
 }
+.icon {
+  fill: #000;
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
+&::before {
+   content: '';
+   display: block;
+   height: 100%;
+ }
+}
 
 .profile {
   padding-top: 2rem;
@@ -178,19 +207,42 @@ export default {
     font-size: 2.5rem;
   }
   >h3 {
-    font-size: 2rem;
+     font-size: 2rem;
+
   }
 }
 
-.icon {
-  fill: #000;
-  width: 1.5rem;
-  height: 1.5rem;
-  vertical-align: middle;
-  &::before {
-    content: '';
-    display: block;
-    height: 100%;
+.contacts{
+  margin-top: 2rem;
+  >h3{
+  font-size: 2rem;
+  text-align: left;
+  margin-left: 2rem;
+   }
+  >p{
+   text-align: left;
+   margin-left: 3rem;
+    >a{
+       text-decoration: none;
+       color: #000;
+     }
+   }
+}
+
+.info{
+  margin-top: 2rem;
+  >h3{
+   font-size: 2rem;
+   text-align: left;
+   margin-left: 2rem;
+   }
+  >ul>li{
+   text-align: left;
+   margin-left: 3rem;
+  >a{
+   text-decoration: none;
+   color: #000;
+   }
   }
 }
 
@@ -213,6 +265,8 @@ export default {
     font-size: 2rem;
   }
 }
+
+
 
 .hobbies {
   margin-top: 15px;
