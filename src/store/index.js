@@ -65,8 +65,10 @@ export default new Vuex.Store({
       state.resumeConfig.map(item => {
         if (item.type === 'array') {
           Vue.set(state.resume, item.field, []);
-         item.keys.map(key => {
-          Vue.set(state.resume[item.field], key, '')
+          let obj={};
+          state.resume[item.field].push(obj);
+          item.keys.map(key => {
+            Vue.set(state.resume[item.field][0], key, '')
           })
         } else {
           Vue.set(state.resume, item.field, {});
@@ -82,7 +84,8 @@ export default new Vuex.Store({
     },
     //tab切换
     switchTab(state, payload) {
-      state.selected = payload
+      state.selected = payload;
+      localStorage.setItem('state', JSON.stringify(state))
     },
     //更新resume展示，并将其保存在localStorage中
     updateResume(state, { path, value }) {
@@ -101,23 +104,26 @@ export default new Vuex.Store({
     },
     //设置resume的数据
     setResume(state, payload) {
-
       // state.resumeConfig.map(({ field }) => {
       //   Vue.set(state.resume, field, payload[field])
       // })
       state.resumeConfig.map(item => {
         if (item.type === 'array') {
-        payload[item.field].forEach((obj,i) => {
-          state.resume[item.field][i].map(key => {
-          Vue.set(state.resume[item.field][i], key, payload[item.field][i][key])
-      })
-        })
+         for(let i=0,len=payload[item.field].length;i<len;i++){
+           if(payload[item.field].length>0){
+             let obj={};
+             state.resume[item.field].push(obj);}
+
+             item.keys.map(key => {
+             Vue.set(state.resume[item.field][i], key, payload[item.field][i][key])
+           })
+         }
       } else {
         item.keys.map(key => {
           Vue.set(state.resume[item.field], key, payload[item.field][key])
       })
       }
-    })
+    });
       state.resume.id = payload.id
     },
     setResumeId(state, { id }) {
@@ -129,14 +135,17 @@ export default new Vuex.Store({
       //过滤出与传入参数field相对应的项，由于过滤出获得的数组所以加上索引
       state.resumeConfig.filter(i => i.field === field)[0].keys.map(key => {
         Vue.set(empty, key, '')
-      })
+      });
+      localStorage.setItem('state', JSON.stringify(state))
     },
     removeResumeSubField(state, { field, index }) {
       state.resume[field].splice(index, 1)
+      localStorage.setItem('state', JSON.stringify(state))
     }
   },
   actions: {
     saveResume({ state, commit }, payload) {
+      localStorage.setItem('state', JSON.stringify(state));
       //新建一个Resume的类
       let Resume = AV.Object.extend('Resume');
       let resume = new Resume();
@@ -181,7 +190,6 @@ export default new Vuex.Store({
       query.descending('updatedAt');
       query.first().then(resume => {
       if (resume) {
-        console.log(resume)
         commit('setResume', { id: resume.id, ...resume.attributes })
       }
     })

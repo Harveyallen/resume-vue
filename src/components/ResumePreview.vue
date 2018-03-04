@@ -23,6 +23,20 @@
           <i>邮 箱：</i>
           <a href="mailto:zoulong2008@126.com" target="_blank">{{resume.Contacts.email}}</a>
         </p>
+        <p class="wechat">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-email"></use>
+          </svg>
+          <i>微 信：</i>
+          {{resume.Contacts.wechat}}
+        </p>
+        <p class="twitter">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-email"></use>
+          </svg>
+          <i>推特：</i>
+          {{resume.Contacts.twitter}}
+        </p>
       </div>
 
       <div class="info">
@@ -46,15 +60,31 @@
             </svg>
             英语水平：{{resume.Profile.english}}
           </li>
+          <li>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-edu"></use>
+            </svg>
+            github：{{resume.Contacts.github}}
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-edu"></use>
+            </svg>
+            blog：{{resume.Contacts.blog}}
+          </li>
         </ul>
       </div>
 
-
-
-      <div class="edu">
-        <h3>教育背景</h3>
-        <p>{{resume.Education.school}}</p>
-        <p>{{resume.Education.time}}</p>
+      <div class="skills">
+        <h3>Tech. 技能点</h3>
+          <ul class="skillpoint" v-for="(item,index) in resume.Skills" >
+            <li class="item-skill">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-edu"></use>
+              </svg>
+              {{item.skill}}
+            </li>
+          </ul>
       </div>
       <div class="hobbies">
         <h3>兴趣爱好</h3>
@@ -69,25 +99,11 @@
         </p>
       </div>
     </section>
+
+
     <section class="section-right">
-      <div class="blog">
-        <h3>Github&Blog</h3>
-        <p class="github">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-github"></use>
-          </svg>
-          <span>Github:
-            <a :href="resume.Contacts.github" v-text="resume.Contacts.github"></a>
-          </span>
-        </p>
-        <p class="blog">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-blog"></use>
-          </svg>
-          <span>Blog:
-            <a :href="resume.Contacts.blog" v-text="resume.Contacts.blog"></a>
-          </span>
-        </p>
+      <div class="pro-head">
+        <h3>Experience. 项目与工作经验</h3>
       </div>
       <div class="work">
         <div class="title">
@@ -151,7 +167,6 @@ export default {
 <style lang="scss" scoped>
 #resume-preview {
   width: 62%;
-  background-color: #f5f6f7;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .5);
   overflow: auto;
   display: flex;
@@ -170,21 +185,12 @@ export default {
     padding: 1rem;
     line-height: 1.8;
     padding-bottom: 10px;
-    >.blog {
-      padding-left: 80px;
-      background-color: #f5f6f7;
+    >.pro-head {
       >h3 {
-        font-size: 2rem;
-      }
-      .github,
-      .blog {
-        >span {
-          margin-left: 5px;
-          >a {
-            text-decoration: none;
-            color: #313131;
-          }
-        }
+        font-size: 2.5rem;
+        background-color: #f5f6f7;
+        border-bottom: 2px solid #ccc;
+        padding:1rem;
       }
     }
   }
@@ -246,27 +252,18 @@ export default {
   }
 }
 
-.personal {
-  display: flex;
-  width: 100%;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  >li {
-    flex: 1;
-  }
+.skills{
+  margin-top: 2rem;
+>h3{
+   font-size: 2rem;
+   text-align: left;
+   margin-left: 2rem;
+ }
+>ul>li{
+   text-align: left;
+   margin-left: 3rem;
+ }
 }
-
-.edu {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #ccc;
-  >h3 {
-    font-size: 2rem;
-  }
-}
-
-
 
 .hobbies {
   margin-top: 15px;
@@ -302,7 +299,7 @@ export default {
   padding: .5rem;
   background-color: #f5f6f7;
   .title {
-    border-bottom: 2px solid #ccc;
+    border-bottom: 1px solid #ccc;
     >h3 {
       font-size: 2rem;
     }

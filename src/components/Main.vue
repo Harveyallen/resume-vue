@@ -44,9 +44,9 @@ export default {
   methods: {
     restoreResumeFromLocalStorage() {
       //从localStorage获取resume
-      let resume = localStorage.getItem('resume')
-      if (resume) {
-        this.$store.commit('setResume', JSON.parse(resume))
+      let state = localStorage.getItem('state');
+      if (state) {
+        this.$store.commit('setResume', JSON.parse(state))
       }
     }
   }
