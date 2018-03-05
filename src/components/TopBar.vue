@@ -26,6 +26,7 @@ export default {
       this.$router.replace('/')
     },
     preview() {
+      this.saveResume();
       this.$router.replace('/preview')
     },
     ...mapMutations(['removeUser']),

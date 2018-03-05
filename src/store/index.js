@@ -6,7 +6,7 @@ import objectPath from 'object-path'
 import getErrorMessage from 'lib/getErrorMessage'
 
 Vue.use(Vuex);
-
+var vm = new Vue();
 export default new Vuex.Store({
   state: {
     selected: 'Profile',
@@ -64,14 +64,15 @@ export default new Vuex.Store({
     initState(state, payload) {
       state.resumeConfig.map(item => {
         if (item.type === 'array') {
-          Vue.set(state.resume, item.field, []);
+          console.log(state.resume)
+          Vue.set(state.resume, item.field,[]);
           let obj={};
           state.resume[item.field].push(obj);
           item.keys.map(key => {
             Vue.set(state.resume[item.field][0], key, '')
           })
         } else {
-          Vue.set(state.resume, item.field, {});
+          vm.$set(state.resume, item.field, {});
           item.keys.map(key => {
             Vue.set(state.resume[item.field], key, '')
           })
@@ -80,7 +81,6 @@ export default new Vuex.Store({
       if (payload) {
         Object.assign(state, payload)
       }
-
     },
     //tab切换
     switchTab(state, payload) {
@@ -111,10 +111,10 @@ export default new Vuex.Store({
         if (item.type === 'array') {
          for(let i=0,len=payload[item.field].length;i<len;i++){
            if(payload[item.field].length>0){
-             let obj={};
-             state.resume[item.field].push(obj);}
+             Vue.set(state.resume[item.field],i,{})
+           }
 
-             item.keys.map(key => {
+           item.keys.map(key => {
              Vue.set(state.resume[item.field][i], key, payload[item.field][i][key])
            })
          }

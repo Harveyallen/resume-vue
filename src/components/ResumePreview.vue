@@ -105,20 +105,6 @@
       <div class="pro-head">
         <h3>Experience. 项目与工作经验</h3>
       </div>
-      <div class="work">
-        <div class="title">
-          <h3>工作经验</h3>
-        </div>
-        <div class="work-item" v-for="(item,index) in resume.Work" :key="index">
-          <ul>
-            <li class="item-title">
-              <span>{{item.company}}</span>
-              <span>{{item.time}}</span>
-            </li>
-            <li class="content">{{item.details}}</li>
-          </ul>
-        </div>
-      </div>
       <div class="project">
         <div class="title">
           <h3>项目经验</h3>
@@ -133,6 +119,21 @@
           </ul>
         </div>
       </div>
+      <div class="work">
+        <div class="title">
+          <h3>工作经验</h3>
+        </div>
+        <div class="work-item" v-for="(item,index) in resume.Work" :key="index">
+          <ul>
+            <li class="item-title">
+              <span>{{item.company}}</span>
+              <span>{{item.time}}</span>
+            </li>
+            <li class="content">{{item.details}}</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="skill">
         <div class="title">
           <h3>技能</h3>
@@ -185,6 +186,7 @@ export default {
     padding: 1rem;
     line-height: 1.8;
     padding-bottom: 10px;
+    margin-top:20px;
     >.pro-head {
       >h3 {
         font-size: 2.5rem;
@@ -299,12 +301,83 @@ export default {
   padding: .5rem;
   background-color: #f5f6f7;
   .title {
-    border-bottom: 1px solid #ccc;
     >h3 {
       font-size: 2rem;
+      margin-bottom: 1rem;
     }
   }
 }
+
+.project{
+  >.project-item{
+     border-left:2px solid #ccc;
+     margin-left: 4px;
+   &::before{
+      content: '';
+      display: block;
+      height: 14px;
+      width: 14px;
+      border-radius: 100%;
+      background: #ccc;
+      position: relative;
+      left: -8px;
+      top: 1px;
+    }
+  >ul{
+     position: relative;
+     top: -2rem;
+     left:1rem;
+   }
+   }
+}
+
+.work{
+>.work-item{
+   border-left:2px solid #ccc;
+   margin-left: 4px;
+&::before{
+   content: '';
+   display: block;
+   height: 14px;
+   width: 14px;
+   border-radius: 100%;
+   background: #ccc;
+   position: relative;
+   left: -8px;
+   top: 1px;
+ }
+>ul{
+   position: relative;
+   top: -2rem;
+   left:1rem;
+ }
+}
+}
+
+.skill{
+>.skill-item{
+   border-left:2px solid #ccc;
+   margin-left: 4px;
+&::before{
+   content: '';
+   display: block;
+   height: 14px;
+   width: 14px;
+   border-radius: 100%;
+   background: #ccc;
+   position: relative;
+   left: -8px;
+   top: 1px;
+ }
+>ul{
+   position: relative;
+   top: -2rem;
+   left:1rem;
+ }
+}
+}
+
+
 
 .item-title {
   display: flex;
