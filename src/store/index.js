@@ -18,7 +18,7 @@ export default new Vuex.Store({
       {
         field: 'Profile',
         icon: 'id',
-        keys: ['name','intention','sex', 'age','degree', 'english','assessment']
+        keys: ['name','intention','sex', 'age','assessment']
       },
       {
         field: 'Work',
@@ -29,13 +29,13 @@ export default new Vuex.Store({
       {
         field: 'Education',
         icon: 'edu',
-        keys: ['school', 'time']
+        keys: ['degree', 'English']
       },
       {
         field: 'Projects',
         icon: 'project',
         type: 'array',
-        keys: ['project', 'time', 'details']
+        keys: ['project', 'technology', 'details']
       },
       {
         field: 'Hobbys',
@@ -46,7 +46,7 @@ export default new Vuex.Store({
       {
         field: 'Contacts',
         icon: 'contact',
-        keys: ['telephone', 'email', 'github', 'blog','wechat','twitter']
+        keys: ['telephone','email', 'github', 'blog','twitter']
       },
       {
         field: 'Skills',

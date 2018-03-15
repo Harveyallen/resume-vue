@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 #resume-editor {
   background-color: #f5f6f8;
-  width: 30%;
+  width: 25%;
   min-width: 380px;
   display: flex;
   flex-direction: row;

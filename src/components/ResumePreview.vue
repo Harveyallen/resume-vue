@@ -10,7 +10,7 @@
         <h3>Contact. 联系方式</h3>
         <p class="mobilephone">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-tel"></use>
+            <use xlink:href="#icon-telephone"></use>
           </svg>
           <i>手机号:</i>
           {{resume.Contacts.telephone}}
@@ -23,16 +23,9 @@
           <i>邮 箱：</i>
           <a href="mailto:zoulong2008@126.com" target="_blank">{{resume.Contacts.email}}</a>
         </p>
-        <p class="wechat">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-email"></use>
-          </svg>
-          <i>微 信：</i>
-          {{resume.Contacts.wechat}}
-        </p>
         <p class="twitter">
           <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-email"></use>
+            <use xlink:href="#icon-twitter"></use>
           </svg>
           <i>推特：</i>
           {{resume.Contacts.twitter}}
@@ -46,29 +39,29 @@
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-id"></use>
             </svg>
-            个人信息：{{resume.Profile.name}}/{{resume.Profile.sex}}/{{resume.Profile.age}}岁
+            个人信息：{{resume.Profile.name}}/{{resume.Profile.sex}}/{{resume.Profile.age}}
           </li>
           <li>
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-edu"></use>
             </svg>
-            学位等级：{{resume.Profile.degree}}
+            学位等级：{{resume.Education.degree}}
           </li>
           <li>
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-edu"></use>
+              <use xlink:href="#icon-English"></use>
             </svg>
-            英语水平：{{resume.Profile.english}}
+            英语水平：{{resume.Education.English}}
           </li>
           <li>
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-edu"></use>
+              <use xlink:href="#icon-github"></use>
             </svg>
             github：{{resume.Contacts.github}}
           </li>
           <li>
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-edu"></use>
+              <use xlink:href="#icon-blog"></use>
             </svg>
             blog：{{resume.Contacts.blog}}
           </li>
@@ -80,7 +73,7 @@
           <ul class="skillpoint" v-for="(item,index) in resume.Skills" >
             <li class="item-skill">
               <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-edu"></use>
+                <use xlink:href="#icon-js"></use>
               </svg>
               {{item.skill}}
             </li>
@@ -113,7 +106,7 @@
           <ul>
             <li class="item-title">
               <span>{{item.project}}</span>
-              <span>{{item.time}}</span>
+              <span>{{item.technology}}</span>
             </li>
             <li class="content">{{item.details}}</li>
           </ul>
@@ -167,13 +160,13 @@ export default {
 
 <style lang="scss" scoped>
 #resume-preview {
-  width: 62%;
+  width: 65%;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .5);
   overflow: auto;
   display: flex;
   background-color: #ECECEC;
   >.section-left {
-    width: 35%;
+    width: 30%;
 
     color: #313131;
     text-align: center;
@@ -306,6 +299,19 @@ export default {
       margin-bottom: 1rem;
     }
   }
+  .item-title>span:last-child{
+    font-size: 1.2rem;
+    line-height: 32px;
+    padding-right: 20px;
+  }
+  .content{
+    padding-right: 20px;
+    word-break: break-all;
+    word-wrap:break-word;
+    white-space: pre-wrap;
+    text-align:justify;
+    text-justify:inter-word;
+  }
 }
 
 .project{
@@ -383,7 +389,7 @@ export default {
   display: flex;
   justify-content: space-between;
   font-size: 1.8rem;
-  color: #0093ff;
+  color: #000;
 }
 
 .content {
