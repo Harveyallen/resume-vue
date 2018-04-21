@@ -64,7 +64,6 @@ export default new Vuex.Store({
     initState(state, payload) {
       state.resumeConfig.map(item => {
         if (item.type === 'array') {
-          console.log(state.resume)
           Vue.set(state.resume, item.field,[]);
           let obj={};
           state.resume[item.field].push(obj);
@@ -150,7 +149,7 @@ export default new Vuex.Store({
       let Resume = AV.Object.extend('Resume');
       let resume = new Resume();
       //如果这个id存在，
-
+      console.log(state.resume)
       if (state.resume.id) {
         resume.id = state.resume.id
       }

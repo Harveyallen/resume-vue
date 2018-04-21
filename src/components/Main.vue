@@ -17,6 +17,7 @@ import ResumeEditor from './ResumeEditor'
 import getAVUser from 'lib/getAVUser'
 import store from '../store/index'
 
+
 export default {
   name: 'Main',
   store,
