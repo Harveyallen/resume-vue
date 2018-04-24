@@ -24,11 +24,36 @@ export default {
     },
     downPdf(){
       let dom = $("#resume-preview");
-      html2canvas(dom[0]).then(canvas => {
+      var shareContent = dom[0];
+      var width = shareContent.offsetWidth;
+      var height = shareContent.offsetHeight;
+      var canvas = document.createElement("canvas");
+      var scale = 2;
+
+      canvas.width = width * scale;
+      canvas.height = height * scale;
+//      canvas.getContext("2d").scale(scale, scale);
+
+      var opts = {
+        scale: scale,
+        canvas: canvas,
+        logging: true,
+        width: width,
+        height: height
+      };
+
+      html2canvas(dom[0],opts).then(canvas => {
+        var context = canvas.getContext('2d');
+        // 关闭抗锯齿
+        context.mozImageSmoothingEnabled = false;
+        context.webkitImageSmoothingEnabled = false;
+        context.msImageSmoothingEnabled = false;
+        context.imageSmoothingEnabled = false;
+
+
+
         var contentWidth = canvas.width;
         var contentHeight = canvas.height;
-
-
         //一页pdf显示html页面生成的canvas高度;
         var pageHeight = contentWidth / 595.28 * 841.89;
         //未生成pdf的html页面高度
@@ -37,7 +62,9 @@ export default {
         var position = 0;
         //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
         var imgWidth = 595.28;
-        var imgHeight = 595.28/contentWidth * contentHeight; 
+        var imgHeight = 595.28/contentWidth * contentHeight;
+
+
 
         var pageData = canvas.toDataURL('image/jpeg', 1.0);
         var pdf = new jsPDF('', 'pt', 'a4');
@@ -45,7 +72,7 @@ export default {
         //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
         //当内容未超过pdf一页显示的范围，无需分页
         if (leftHeight < pageHeight) {
-          pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight );
+          pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth,imgHeight);
         } else {
           while(leftHeight > 0) {
             pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
@@ -58,7 +85,7 @@ export default {
           }
         }
 
-        pdf.save('个人报告.pdf');
+        pdf.save('resume.pdf');
       });
 
     }
@@ -78,7 +105,7 @@ export default {
   right: 100px;
   top: 20px;
   font-size: 1.5rem;
-  background: #2d78f4;
+  background: #ccc;
   color: #fff;
   padding: 10px 20px;
   cursor: pointer;
@@ -97,7 +124,7 @@ export default {
   right: 100px;
   top: 80px;
   font-size: 1.5rem;
-  background: #2d78f4;
+  background: #000;
   color: #fff;
   padding: 10px 20px;
   cursor: pointer;
